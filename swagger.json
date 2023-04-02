@@ -1,0 +1,177 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "My User Project CRUD",
+        "description": "My User Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "API for auth in the system"
+        }
+    ],
+    "paths": {
+        "/auth/registration": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Create new user in system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Auth"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user is created",
+                        "schema": {
+                            "$ref": "#/definitions/Message"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Create new user in system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "Emile and password",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User is login",
+                        "schema": {
+                            "$ref": "#/definitions/Token"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/user": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Get user",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User info",
+                        "schema": {
+                            "$ref": "#/definitions/Auth"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Auth": {
+            "required": [
+                "name",
+                "_id",
+                "companies"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "number"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Login": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Token": {
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "Message": {
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "authorization": {
+            "type": "apiKey",
+            "name": "authorization",
+            "in": "header",
+            "description": "The token for authentication"
+        }
+    },
+    "security": [
+        {
+            "authorization": []
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ]
+}
