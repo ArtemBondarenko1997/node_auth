@@ -93,6 +93,33 @@
                         }
                     }
                 }
+            },
+            "patch": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Update user",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Auth"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated user info",
+                        "schema": {
+                            "$ref": "#/definitions/Auth"
+                        }
+                    }
+                }
             }
         }
     },
