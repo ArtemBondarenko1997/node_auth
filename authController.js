@@ -66,6 +66,20 @@ class authController {
             res.status(400).json({message: 'User with this id not find'})
         }
     }
+
+    async updateUser(req, res) {
+        try {
+            const token = req.headers.authorization.split(' ')[1]
+            const {id: _id} = jwt.verify(token, secret)
+            await User.updateOne({ _id }, { $set: req.body })
+            const updatedUser = await User.findOne({ _id })
+            const {address, age, email, first_name, last_name, phone} = updatedUser;
+            return res.json({address, age, email, first_name, last_name, phone});
+        } catch (e) {
+            console.log(e)
+            res.status(400).json({message: 'User update error'})
+        }
+    }
 }
 
 module.exports = new authController()
