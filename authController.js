@@ -29,6 +29,7 @@ class authController {
             return res.json({message: "User successfully registered"})
         } catch (e) {
             console.log(e)
+            console.log('test---------------------------------------------------------------------------------------')
             res.status(400).json({message: 'Registration error'})
         }
     }
