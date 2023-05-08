@@ -19,11 +19,16 @@ app.use(
     swaggerUi.setup(swaggerDocument)
   );
 
+let options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
+
 
 const start = async () => {
     try {
         console.log(process.env)
-        await mongoose.connect(process.env.DB_URL)
+        await mongoose.connect(process.env.DB_URL, options)
         app.listen(PORT, () => console.log(`server started on port ${PORT}`))
     } catch (e) {
         console.log(e)
